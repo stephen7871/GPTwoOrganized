@@ -44,6 +44,8 @@ app.get("/planets", async (request, response) => {
 
 
 
+
+
 // planets.insertMany(json).then(function(){
 //   console.log("Data inserted")  // Success
 // }).catch(function(error){
@@ -105,6 +107,20 @@ app.get("/characters", async (request, response) => {
 
     try {
       response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  const router = express.Router()
+
+  app.get("/characters/:id", async (request, response) => {
+    const {id} = request.params;
+    const character = await characters.findById(id);
+    console.log(users);
+
+    try {
+      response.send(character);
     } catch (error) {
       response.status(500).send(error);
     }

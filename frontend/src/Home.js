@@ -42,6 +42,27 @@ function Home() {
         // renderCharacters(matchingCharacters);
       }
 
+    const getCharacterId = (e)  =>{
+      console.log(e);
+        fetch(`http://localhost:5000/characters/${e.id}`,
+        {
+          method: 'GET',
+          body: JSON.stringify({id: e.id}),
+          headers:
+          {"Content-Type": "application/json"}
+  
+        }
+        )
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log('Error from ShowBookList');
+        });
+        
+
+    }
+
 
 
 return(<body>
@@ -56,7 +77,7 @@ return(<body>
     
     <section id="charactersList">
         {characters.map(function(character){
-                return <li key={character.id}>{character.name}</li>
+                return <li key={character.id} onClick={() => getCharacterId(character)}>{character.name}</li>
         })
     }
             
