@@ -6,7 +6,7 @@ function Planets(){
 
     let navigate = useNavigate();
     let params = useParams();
-    let url = "/api";
+    let url = "/localhost:5000";
     async function getPlanet() {
         let fetchedPlanet = await fetchPlanet([params.id]);
         fetchedPlanet.films = await fetchFilms();
