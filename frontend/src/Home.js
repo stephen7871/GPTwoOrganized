@@ -1,10 +1,15 @@
 import axios from 'axios';
 import {useEffect,useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
     const [characters, setCharcters] = useState([]);
     const [matchingCharacters, setMatchingCharacters] = useState([]);
+    const navigate = useNavigate();
+
+    const handleClick = () => navigate('/characters', )
+    
     useEffect(() => {
       axios
         .get('http://localhost:5000/characters')
@@ -42,23 +47,24 @@ function Home() {
         // renderCharacters(matchingCharacters);
       }
 
-    const getCharacterId = (e)  =>{
+    const gotoCharacters = (e)  =>{
       console.log(e);
-        fetch(`http://localhost:5000/characters/${e.id}`,
-        {
-          method: 'GET',
-          body: JSON.stringify({id: e.id}),
-          headers:
-          {"Content-Type": "application/json"}
+      navigate('/characters',{props: e});
+        // fetch(`http://localhost:5000/characters/${e.id}`,
+        // {
+        //   method: 'GET',
+        //   body: JSON.stringify({id: e.id}),
+        //   headers:
+        //   {"Content-Type": "application/json"}
   
-        }
-        )
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log('Error from ShowBookList');
-        });
+        // }
+        // )
+        // .then((res) => {
+        //   console.log(res.data);
+        // })
+        // .catch((err) => {
+        //   console.log('Error from ShowBookList');
+        // });
         
 
     }
@@ -77,7 +83,7 @@ return(<body>
     
     <section id="charactersList">
         {characters.map(function(character){
-                return <li key={character.id} onClick={() => getCharacterId(character)}>{character.name}</li>
+                return <li key={character.id} onClick={() => gotoCharacters(character)}>{character.name}</li>
         })
     }
             

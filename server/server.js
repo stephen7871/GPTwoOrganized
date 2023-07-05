@@ -117,7 +117,7 @@ app.get("/characters", async (request, response) => {
   app.get("/characters/:id", async (request, response) => {
     const {id} = request.params;
     const character = await characters.findById(id);
-    console.log(users);
+    console.log(character);
 
     try {
       response.send(character);
