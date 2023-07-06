@@ -7,11 +7,11 @@ function Planet(){
     let navigate = useNavigate();
     let params = useParams();
     
-    useEffect(async() =>{ let fetchedPlanet = await fetch(`http://localhost:5000/planets/${params.id}`);
-    fetchedPlanet.films = await fetch(`http://localhost:5000/planets/${params.id}/planets`)
-    fetchedPlanet.characters = await fetch(`http://localhost:5000/characters/${params.id}`);
-    console.log(fetchedPlanet);
-    setPlanet(fetchedPlanet);}, []);
+    // useEffect(async() =>{ let fetchedPlanet = await fetch(`http://localhost:5000/planets/${params.id}`);
+    // fetchedPlanet.films = await fetch(`http://localhost:5000/planets/${params.id}/planets`)
+    // fetchedPlanet.characters = await fetch(`http://localhost:5000/characters/${params.id}`);
+    // console.log(fetchedPlanet);
+    // setPlanet(fetchedPlanet);}, []);
 
     function gotoFilm(id){
         navigate(`/films/${id}`);
@@ -31,10 +31,13 @@ function Planet(){
     
     <section id="characters">
       <h2>People</h2>
+      <button onClick={() => gotoCharacter(1)}> Go to character</button>
       <ul></ul>
     </section>
     <section id="films">
       <h2>Films appeared in</h2>
+      <button onClick={() => gotoFilm(1)}>go to films</button>
+      
       <ul></ul>
     </section>
 </>
