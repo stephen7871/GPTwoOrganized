@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import Home from './Home';
-//import Characters from './Characters';
-// import Films from './Films';
-// import Planets from './Planets';
+import Character from './Character';
+import Planet from './Planet';
+import Film from './Film';
+
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
@@ -14,9 +15,9 @@ function App() {
       <Router>
       <Routes>
         <Route path='/' exact Component={Home}/>
-        {/* <Route path='/characters/:id' exact Component={Characters}/> */}
-        {/* <Route path='/films/:id' exact Component={Films}/>
-        <Route path='/planets/:id' exact Component={Planets}/> */}
+        <Route path='/characters/:id' exact Component={Character}/> 
+        <Route path='/films/:id' exact Component={Film}/>
+        <Route path='/planets/:id' exact Component={Planet}/>
       </Routes>
       </Router>
     

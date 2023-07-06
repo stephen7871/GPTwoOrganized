@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 
-function Films(){
+function Film(){
     let[film, setFilm] = useState([]);
 
     let navigate = useNavigate();
@@ -28,3 +28,4 @@ function Films(){
           <h1>film page</h1>);
     
           }
+          export default Film;

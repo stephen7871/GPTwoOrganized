@@ -6,7 +6,7 @@ function Character(){
 
     const navigate = useNavigate();
     const params = useParams();
-    async function getCharacter() {
+    async function getCharacter () {
         let fetchedCharacter = await fetch(`http://localhost:5000/characters/${params.id}`);
         fetchedCharacter.homeworld =  await fetch(`http://localhost:5000/planets/${fetchedCharacter.homeworld}`)
         fetchedCharacter.films =  await fetch(`http://localhost:5000/characters/${params.id}/films`);
@@ -48,3 +48,5 @@ function Character(){
   
     </>
     )};
+
+    export default Character;

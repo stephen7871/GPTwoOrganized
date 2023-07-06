@@ -13,7 +13,7 @@ mongoose.connect(
     }
 );
 
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({origin: true, credentials: true, }));
    
 
 const planetsSchema = new mongoose.Schema({
