@@ -6,7 +6,7 @@ function Character(){
 
     const navigate = useNavigate();
     const params = useParams();
-    // let url = "/api";
+    let url = "/localhost:5000";
     async function getCharacter() {
         let fetchedCharacter = await fetch(`http://localhost:5000/characters/${params.id}`);
         fetchedCharacter.homeworld =  await fetch(`http://localhost:5000/planets/${fetchedCharacter.homeworld}`)
