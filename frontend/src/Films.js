@@ -8,9 +8,9 @@ function Films(){
     let params = useParams();
     let url = "/api";
     async function getFilm() {
-        let fetchedFilm = await fetchFilm([params.id]);
-        fetchedFilm.planets = await fetchPlanets();
-        fetchedFilm.characters = await fetchCharacters();
+        let fetchedFilm = await fetch(`http://localhost:5000/films/${params.id}`);
+        fetchedFilm.planets = await fetch(`http://localhost:5000/films/${params.id}/planets`);
+        fetchedFilm.characters = await fetch (`http://localhost:5000/films/${params.id}/characters`)
         console.log(fetchedFilm);
         setFilm(fetchedFilm);
     }

@@ -8,38 +8,44 @@ function Character(){
     const params = useParams();
     // let url = "/api";
     async function getCharacter() {
-        let fetchedCharacter = await fetchCharacter([params.id]);
-        fetchedCharacter.homeworld = await fetchHomeworld(fetchedCharacter);
-        fetchedCharacter.films = await fetchFilms();
+        let fetchedCharacter = await fetch(`http://localhost:5000/characters/${params.id}`);
+        fetchedCharacter.homeworld =  await fetch(`http://localhost:5000/planets/${fetchedCharacter.homeworld}`)
+        fetchedCharacter.films =  await fetch(`http://localhost:5000/characters/${params.id}/films`);
         console.log(fetchedCharacter);
         setCharacter(fetchedCharacter);
     }  
 
-    async function fetchCharacter(){
-        let result = await fetch(`http://localhost:5000/characters/${params.id}`);
-        return result.json();
-    }
 
-    const fetchHomeworld = async (fetchCharacter) => {
-        const planet  = await fetch(`http://localhost:5000/planets/${fetchedCharacter.homeworld}`)
-        .then((res) => res.json());
-        return planet;
-    };
+    function navtoFilm(id){
+        navigate(`/films/${id}`);
+    } 
 
-    const fetchFilms = async () => {
-        let ret = await fetch(`http://localhost:5000/characters/${params.id}/films`)
-        .then((res) => res.json() );
-        return ret;
-    };
-
-    useEffect(() => getCharacter, []);
-
-    function handlePlanetClick(id){
+    
+    function navtoPlanet(id){
         navigate(`/planets/${id}`);
     }
 
-    function handleFilmClick(id){
-        navigate(`/films/${id}`);
-    }
+   
 
-} 
+
+    return(
+<>
+
+    <h1 id="name"></h1>
+    <div id="generalInfo">
+      <p>Height: <span id="height"></span> cm</p>
+      <p>Mass: <span id="mass"></span> kg</p>
+      <p>Born: <span id="birth_year"></span></p>
+    </div>
+    <div id="planets">
+      <h2>Homeworld</h2>
+      <p><span id="homeworld"></span></p>
+    </div>
+    <div id="films">
+      <h2>Films appeared in</h2>
+      <ul></ul>
+    </div>
+   
+  
+    </>
+    )};

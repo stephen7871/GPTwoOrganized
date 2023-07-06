@@ -6,25 +6,14 @@ function Planets(){
 
     let navigate = useNavigate();
     let params = useParams();
-    let url = "/api";
     async function getPlanet() {
-        let fetchedPlanet = await fetchPlanet([params.id]);
+        let fetchedPlanet = await fetch(`http://localhost:5000/planets/${params.id}`);
         fetchedPlanet.films = await fetchFilms();
         fetchedPlanet.characters = await fetchCharacters();
         console.log(fetchedPlanet);
         setFilm(fetchedPlanet);
     }
     
-    async function fetchPlanet() {
-        let result = await fetch(`${url}/planets/${params.id}`);
-        return result.json();
-    }
-
-    const fetchCharacters = async () => {
-        let ret = await fetch (`${url}/planets/${params.id}/characters`)
-        .then((res) => res.json());
-        return ret;
-    };
 
     const fetchFilms = async () => {
         let ret = await fetch(`${url}/planets/${params.id}/planets`).then((res) => res.json());
