@@ -16,7 +16,7 @@ function Planets(){
     
 
     const fetchFilms = async () => {
-        let ret = await fetch(`${url}/planets/${params.id}/planets`).then((res) => res.json());
+        let ret = await fetch(`http://localhost:5000/planets/${params.id}/planets`).then((res) => res.json());
         return ret;
     };
 
@@ -30,4 +30,21 @@ function Planets(){
         navigate(`/characters/${id}`);
     }
 
-}
+    retun (
+<>    <h1 id="name"></h1>
+    <section id="generalInfo">
+        <p>climate: <span id="climate"></span> </p>
+        <p>surface_Water: <span id="surfaceWater"></span></p>
+     
+      </section>
+    
+    <section id="characters">
+      <h2>People</h2>
+      <ul></ul>
+    </section>
+    <section id="films">
+      <h2>Films appeared in</h2>
+      <ul></ul>
+    </section>
+</>
+)};
